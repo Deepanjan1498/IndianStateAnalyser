@@ -13,12 +13,12 @@ public class StateCensusAnalyserTest
 	public static final String CENSUS_CSV_FILE = "D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\IndianCSVCensusData.csv";
 	public static final String INCORRECT_FILE = ".\sample.txt";
 	public static final String INCORRECT_CSV_FILE="D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\sample3.csv";
-	public static final String WRONG_DELIMITER_CENSUS_CSV = "D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\sample2.csv";
+	public static final String WRONG_DELIMITER_CENSUS_CSV = "D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\sample5.csv";
 	public static final String INCORRECT_HEADER_CSV="D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\sample3.csv";
 	public static final String STATE_CSV_FILE= "D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\Statecode.csv";
 	public static final String INCORRECTSTATE_FILE = ".\sample.txt";
-	public static final String INCORRECTSTATE_CSV_FILE = "D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\sample3.csv";
-	public static final String WRONG_DELIMITERSTATE_CENSUS_CSV = "D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\sample2.csv";
+	public static final String INCORRECTSTATE_CSV_FILE = "D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\sample4.csv";
+	public static final String WRONG_DELIMITERSTATE_CENSUS_CSV = "D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\sample6.csv";
 	public static final String INCORRECTSTATE_HEADER_CSV="D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\sample4.csv";
 	
 	
@@ -58,7 +58,7 @@ public class StateCensusAnalyserTest
 		}
 	}
 	@Test
-	public void givenCsvFile_IFDelimiterIsWrong_ShouldThrowExceptionOfDelimiterISSUE() {
+	public void givenCsvFile_IFDelimiterIsWrong_ShouldThrowExceptionOfDelimiterIssue() {
 		try {
 			StateCensusAnalyser stateCensusAnalyser=new StateCensusAnalyser();
 			ExpectedException exceptionRule= ExpectedException.none();
@@ -117,7 +117,7 @@ public class StateCensusAnalyserTest
 		}
 	}
 	@Test
-	public void givenStateCsvFile_IFDelimiterIsWrong_ShouldThrowExceptionOfDelimiterISSUE() {
+	public void givenStateCsvFile_IFDelimiterIsWrong_ShouldThrowExceptionOfDelimiterIssue() {
 		try {
 			StateCensusAnalyser stateCensusAnalyser=new StateCensusAnalyser();
 			ExpectedException exceptionRule= ExpectedException.none();
