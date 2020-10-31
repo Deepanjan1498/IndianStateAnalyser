@@ -1,39 +1,40 @@
 package org.bridgelabz.censusanalyser;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.List;
 import java.util.stream.StreamSupport;
 
-import org.bridgelabz.csvhandler.*;
+import CSVBuilder.CSVBuilderFactory;
+import CSVBuilder.ICSVBuilder;
 
 public class StateCensusAnalyser 
 {
-	public int loadStateCensusData(String csvfilePath) throws CensusAnalyserException {
+	public int loadStateCensusData(String csvfilePath) throws CSVBuilderException {
 		try {	
 			Reader reader;
 			reader = Files.newBufferedReader(Paths.get(csvfilePath));
 			ICSVBuilder csvBuilder=CSVBuilderFactory.createCSVBuilder();
-			Iterator<CSVStateCensus> csvStateCensusIterator=csvBuilder.getIteratorCSV(reader,CSVStateCensus.class);
-			return this.getCountFromCSVIterator(csvStateCensusIterator);
+			List<CSVStateCensus> csvStateCensusList=csvBuilder.getCSVFileList(reader,CSVStateCensus.class);
+			return csvStateCensusList.size();
 			} 
-		catch (IOException e) {
-			throw new CensusAnalyserException(CensusAnalyserException.CensusExceptionType.CENSUS_FILE_PROBLEM,"Incorrect File");
+		catch (IOException | CSVBuilder.CSVBuilderException e) {
+			throw new CSVBuilderException(CSVBuilderException.CSVExceptionType.CENSUS_FILE_PROBLEM,"Incorrect File");
 		}
 	}
-	public int loadIndianStateData(String csvfilePath) throws CensusAnalyserException 
+	public int loadIndianStateData(String csvfilePath) throws CSVBuilderException 
 	{
 		try {	
 			Reader reader;
 			reader = Files.newBufferedReader(Paths.get(csvfilePath));
 			ICSVBuilder csvBuilder=CSVBuilderFactory.createCSVBuilder();
-			Iterator<CSVStates> csvStateIterator=csvBuilder.getIteratorCSV(reader,CSVStates.class);
-			return getCountFromCSVIterator(csvStateIterator);
+			List<CSVStates> csvStateList=csvBuilder.getCSVFileList(reader,CSVStates.class);
+			return csvStateList.size();
 		} 
-		catch (IOException e) {
-			throw new CensusAnalyserException(CensusAnalyserException.CensusExceptionType.CENSUS_FILE_PROBLEM,"Incorrect File");
+		catch (IOException | CSVBuilder.CSVBuilderException e) {
+			throw new CSVBuilderException(CSVBuilderException.CSVExceptionType.CENSUS_FILE_PROBLEM,"Incorrect File");
 		}
 	}
 	public <T> int getCountFromCSVIterator(Iterator<T> csvIterator) {
