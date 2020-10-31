@@ -5,9 +5,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import CSVBuilder.CSVBuilderFactory;
-import CSVBuilder.ICSVBuilder;
-
 public class StateCensusAnalyserTest 
 {
 	public static final String CENSUS_CSV_FILE = "D:\\DEEPANJAN\\PROJECTS\\CensusAnalyser\\src\\RequiredFiles\\IndianCSVCensusData.csv";
@@ -85,7 +82,7 @@ public class StateCensusAnalyserTest
 		StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
 		try {
 			int numberOfEntries = stateCensusAnalyser.loadIndianStateData(STATE_CSV_FILE);
-			Assert.assertEquals(6,numberOfEntries);
+			Assert.assertEquals(5,numberOfEntries);
 			} 
 		catch (CSVBuilderException e) {
 			e.printStackTrace();
