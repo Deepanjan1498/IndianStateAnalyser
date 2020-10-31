@@ -9,8 +9,6 @@ public class CSVBuilderException extends Throwable {
 		CENSUS_FILE_PROBLEM,INCORRECT_TYPE_ISSUE,DELIMITER_ISSUE,INCORRECT_HEADER,NO_CENSUS_DATA
 	}
 	
-	
-
 	public CSVBuilderException(CSVExceptionType exceptionType,String message) {
 		super(message);
 		this.exceptionType = exceptionType;
