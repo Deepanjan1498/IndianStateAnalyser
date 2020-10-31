@@ -138,12 +138,11 @@ public class StateCensusAnalyserTest
 			Assert.assertEquals(CSVBuilderException.CSVExceptionType.INCORRECT_HEADER, e.exceptionType);
 		}
 	}
-	public void givenIndianCensusData_WhenSortedOnState_ShouldReturnSortedResult() throws CSVBuilder.CSVBuilderException {
-
-        String sortedCensusData = null;
+	public void givenIndianCensusData_WhenSortedOnState_ShouldReturnSortedResult() {
         try {
             StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
-            sortedCensusData = stateCensusAnalyser.getStateWiseSortedCensusData(CENSUS_CSV_FILE);
+            stateCensusAnalyser.loadStateCensusData(CENSUS_CSV_FILE);
+            String sortedCensusData=stateCensusAnalyser.getStateWiseSortedCensusData();
             CSVStateCensus[] censusCSV = new Gson().fromJson(sortedCensusData, CSVStateCensus[].class);
             Assert.assertEquals("Bihar",censusCSV[0].stateName);
         } catch (CSVBuilderException e) {
