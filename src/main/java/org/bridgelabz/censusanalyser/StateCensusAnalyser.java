@@ -18,6 +18,7 @@ public class StateCensusAnalyser
 {
 
 	List<CSVStateCensus> csvStateCensusList=null;
+	List<CSVStates> csvStateList=null;
 	public int loadStateCensusData(String csvfilePath) throws CSVBuilderException {
 		try {	
 			Reader reader;
@@ -73,5 +74,46 @@ public class StateCensusAnalyser
 		            }
 		        }
 		 }
+		 public String getStateCodeWiseSortedCensusData() throws CSVBuilderException
+			{
+				if (csvStateList == null || csvStateList.size() == 0) {
+		            throw new CSVBuilderException(CSVBuilderException.CSVExceptionType.NO_CENSUS_DATA,"Wrong and null file");
+		        }
+		        Comparator<CSVStates> censusStateCodeComparator = Comparator.comparing(census -> census.stateCode);
+		        this.sortState(censusStateCodeComparator);
+		        String sortedJson = new Gson().toJson(csvStateList);
+		        return sortedJson;
+		    }
+
+		    private void sortState(Comparator<CSVStates> censusStateCodeComparator) 
+		    {
+		        for (int i = 0; i < csvStateList.size(); i++) 
+		        {
+		            for (int j = 0; j < csvStateList.size() - i - 1; j++) 
+		            {
+		                CSVStates census1 = csvStateList.get(j);
+		                CSVStates census2 = csvStateList.get(j + 1);
+		                if (censusStateCodeComparator.compare(census1, census2) > 0) 
+		                {
+		                	csvStateList.set(j, census2);
+		                	csvStateList.set(j + 1, census1);
+		                }
+
+		            }
+
+		        }
+		    }
+		    public String getPopulationWiseSortedCensusData() throws CSVBuilderException 
+		    {
+		    		if (csvStateCensusList == null || csvStateCensusList.size() == 0) 
+		    		{
+		                throw new CSVBuilderException(CSVBuilderException.CSVExceptionType.NO_CENSUS_DATA,"Wrong and null file");
+		            }
+		            Comparator<CSVStateCensus> censusComparator = Comparator.comparing(census -> census.population);
+		            this.sort(censusComparator);
+		            String sortedJson = new Gson().toJson(csvStateCensusList);
+		            return sortedJson;
+		        
+		    } 
 }
     
